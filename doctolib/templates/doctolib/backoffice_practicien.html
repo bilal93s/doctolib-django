@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme de Gestion Practicien</title>
+</head>
+
+<body>
+    {% include "base.html" %}
+
+    <h3>Votre profession : {{ user.practicien_profession.get }}</h3> 
+    <br/>
+    <h3>Vos rdv en attente : </h3>
+    <ul>
+        {% for appointment in user.practicien_appointments.all %}
+            <li>
+                Patient : {{ appointment.patient }} | Prestation : {{ appointment.prestation }}
+            </li>
+            <a href="{% url 'doctolib:invoice' appointment.id %}">Facturer le rdv</a>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
