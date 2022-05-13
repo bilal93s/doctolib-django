@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 
@@ -27,3 +28,8 @@ class prestation_practicien(models.Model):
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     practicien = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.IntegerField()
+
+class AppointmentForm(ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['date', 'practicien', 'prestation']
