@@ -3,6 +3,6 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 
-def index(request):
-    return HttpResponse('hello world')
-
+def base(request):
+    context = {"message": "Bienvenue"}
+    return render(request, 'doctolib/base.html', context)
