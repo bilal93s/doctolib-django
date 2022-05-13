@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'doctolib/table.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'doctolib/table.js' %}"></script>
+    <title>Bienvenue {{ user.username }}</title>
+</head>
+
+<body>
+    {% include "doctolib/base.html" %}
+
+    <section>
+        <!--for demo wrap-->
+        {% for appointment in user.patient_appointments.all %}
+        <h1>Vos rendez-vous</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Docteur</th>
+                <th>Prestation</th>
+                <th>Horaire</th>
+                <th>Prix</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td>{{ appointment.practicien }}</td>
+                    <td>{{ appointment.prestation }}</td>
+                    <td>01/01/2022 13h00</td>
+                    <td>10€</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        {% endfor %}
+
+        {% for appointment in user.practicien_appointments.all %}
+        <h1>Fixed Table header</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Prestation</th>
+                <th>Horaire</th>
+                <th>Prix</th>
+                <th>Facture</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td>{{ appointment.patient }}</td>
+                    <td>{{ appointment.practicien }}</td>
+                    <td>01/01/2022 13h00</td>
+                    <td>10€</td>
+                    <td><a href="#">Facturation</a></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        {% endfor %}
+      </section>
+</body>
+
+</html>

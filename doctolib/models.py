@@ -19,8 +19,8 @@ class Profession(models.Model):
 
 class Appointment(models.Model):
     date = models.DateTimeField('appointment date')
-    practicien = models.ForeignKey(User, on_delete=models.CASCADE)
-    patient = models.ForeignKey(User, related_name='%(class)s_patient_created', on_delete=models.CASCADE)
+    practicien = models.ForeignKey(User, related_name='practicien_appointments', on_delete=models.CASCADE)
+    patient = models.ForeignKey(User, related_name='patient_appointments', on_delete=models.CASCADE)
     prestation = models.ForeignKey(Prestation, on_delete=models.CASCADE)  
 
 class prestation_practicien(models.Model):
