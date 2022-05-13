@@ -23,9 +23,9 @@
     <p>Please login to see this page.</p>
     {% endif %}
     {% endif %}
-    <form method="post" action="{% url 'doctolib:registration_patient' %}">
+    <form method="post" action="{% url 'registration_practicien' %}">
         {% csrf_token %}
-        {{ register_form }}
+        {{ register_form}}
         <div>
             <input type="submit" value="Inscription" />
             <input type="hidden" name="next" value="{{ next }}" />
@@ -36,10 +36,11 @@
     <div>
         <p><a href="{% url 'password_reset' %}">Mot de passe oublier 
             ?</a></p>
-        <p><a href="{% url 'doctolib:registration_practicien' %}">Inscription
-            practicient?</a></p>
+        <p><a href="{% url 'registration_patient' %}">Inscription
+            Patient?</a></p>
     </div>
     {% endblock %}
+    
 </body>
 
 </html>
