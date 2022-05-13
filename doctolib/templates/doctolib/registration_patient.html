@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+</head>
+
+<body>
+    {% block content %}
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please
+        try again.</p>
+    {% endif %}
+    {% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page.
+        To proceed,
+        please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+    {% endif %}
+    <form method="post" action="{% url 'registration_patient' %}">
+        {% csrf_token %}
+        <div>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </div>
+        <div>
+            <td>{{ form.first_name.label_tag }}</td>
+            <td>{{ form.first_name }}</td>
+        </div>
+        <div>
+            <td>{{ form.last_name.label_tag }}</td>
+            <td>{{ form.last_name }}</td>
+        </div>
+        <div>
+            <td>{{ form.email.label_tag }}</td>
+            <td>{{ form.email }}</td>
+        </div>
+        <div>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password  }}</td>
+        </div>
+        <div>
+            <input type="submit" value="Inscription" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </form>
+    {# Assumes you setup the password_reset view in your
+    URLconf #}
+    <div>
+        <p><a href="{% url 'password_reset' %}">Mot de passe oublier 
+            ?</a></p>
+        <p><a href="{% url 'registration_practicien' %}">Inscription
+            practicient?</a></p>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
