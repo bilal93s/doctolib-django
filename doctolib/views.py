@@ -18,7 +18,6 @@ def home_patient(request):
         'user': user,
     })
 
-
 def registration_patient(request):
     if request.method == "POST":
         form = NewPatientForm(request.POST)

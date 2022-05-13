@@ -29,7 +29,3 @@ class prestation_practicien(models.Model):
     practicien = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.IntegerField()
 
-class AppointmentForm(ModelForm):
-    class Meta:
-        model = Appointment
-        fields = ['date', 'practicien', 'prestation']
