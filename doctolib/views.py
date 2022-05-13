@@ -18,7 +18,6 @@ def home_patient(request):
         'user': user,
     })
 
-
 def registration_patient(request):
     if request.method == "POST":
         form = NewPatientForm(request.POST)
@@ -26,7 +25,7 @@ def registration_patient(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful." )
-            return redirect("main:homepage")
+            return redirect("doctolib:home_patient")
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewPatientForm()
     return render (request=request, template_name="doctolib/registration_patient.html", context={"register_form":form})
@@ -38,7 +37,7 @@ def registration_practicien(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful." )
-            return redirect("main:homepage")
+            return redirect("doctolib:home_patient")
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewPracticientForm()
     return render (request=request, template_name="doctolib/registration_practicien.html", context={"register_form":form})
@@ -56,7 +55,7 @@ def reservation(request):
     #     messages.error(request, "Unsuccessful registration. Invalid information.")
     # form = NewUserForm()
     return render (request=request, template_name="main/register.html", context={"register_form":form})
-    
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.shortcuts import render, get_object_or_404

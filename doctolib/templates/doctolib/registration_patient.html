@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'doctolib/login.css' %}">
+    <script src="{% static 'doctolib/login.js' %}"></script>
     <title>Inscription</title>
 </head>
 
@@ -23,22 +26,39 @@
     <p>Please login to see this page.</p>
     {% endif %}
     {% endif %}
-    <form method="post" action="{% url 'doctolib:registration_patient' %}">
-        {% csrf_token %}
-        {{ register_form }}
-        <div>
-            <input type="submit" value="Inscription" />
-            <input type="hidden" name="next" value="{{ next }}" />
+    <div class="container right-panel-active" id="container">
+        <div class="form-container sign-up-container">
+            <form method="post" action="{% url 'doctolib:registration_patient' %}">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                {{ register_form.username }}
+                {{ register_form.email }}
+                {{ register_form.password1 }}
+                {{ register_form.password2 }}
+                <button class="button">Sign Up</button>
+            </form>
         </div>
-    </form>
-    {# Assumes you setup the password_reset view in your
-    URLconf #}
-    <div>
-        <p><a href="{% url 'password_reset' %}">Mot de passe oublier 
-            ?</a></p>
-        <p><a href="{% url 'doctolib:registration_practicien' %}">Inscription
-            practicient?</a></p>
-    </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="button ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <a class="button ghost" id="signUp" href="{% url 'doctolib:registration_patient' %}">Inscription Patient</a>
+                    <a class="button ghost" id="signUp" href="{% url 'doctolib:registration_practicien' %}">Inscription Practicien</a>
+                </div>
+            </div>
+        </div>
     {% endblock %}
 </body>
 

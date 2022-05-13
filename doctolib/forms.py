@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from .models import Appointment, Profession
 
 # Create your forms here.
 
@@ -46,3 +46,13 @@ class NewPrestationForm(forms.Form):
 		if commit:
 			user.save()
 		return user
+
+class AppointmentForm(forms.Form):
+    class Meta:
+        model = Appointment
+        fields = ['date', 'practicien', 'prestation']
+
+class ProfessionForm(forms.Form):
+    class Meta:
+        model = Profession
+        fields = ['description', 'prestations']
