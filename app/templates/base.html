@@ -51,7 +51,7 @@
                     <a class="nav-link" href="{% url 'doctolib:home_patient'%}"><i class="far fa-address-book"></i>Mes Rendez-vous</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout'%}?next=/"><i class="far fa-address-book"></i>Déconnexion</a>
+                    <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}"><i class="far fa-address-book"></i>Déconnexion</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
